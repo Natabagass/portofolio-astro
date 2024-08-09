@@ -1,0 +1,82 @@
+---
+import Text from "@components/Typography";
+
+const data = [
+    {
+        id: 1,
+        date: 'Oct 2023 - Present',
+        job: 'Cashplus',
+        type: 'Fulltime',
+        active: true,
+        desc: 'Cashplus is a platform for digital payment transaction. Including money transfer, H2H, credit, internet packages, PPOB, and game vouchers'
+    },
+    {
+        id: 2,
+        date: 'Apr 2023 - Present',
+        job: 'Softease Studio',
+        type: 'Parttime',
+        active: false,
+        desc: 'SoftEase Studio is a multi-platform digital studio capable of facilitating all business digital needs.'
+    },
+    {
+        id: 3,
+        date: 'Nov 2022 - Feb 2023',
+        job: 'Torche Education',
+        type: 'Internship',
+        active: false,
+        desc: 'Torche Education is a Startup Education Technology that help you learn in the field of engineering, especially in the field of Chemical Engineering.'
+    },
+]
+---
+
+<div class="bg-[#1C1C1C30] mt-12 shadow-inner rounded-3xl">
+    <div class="p-8">
+        <Text size="h2" Type="h2" weight="font-medium">
+            Work Experiences
+        </Text>
+    </div>
+    <div class="bg-secondary/50 flex flex-col gap-4 p-8">
+        <table class="w-full relative overflow-auto">
+            <tbody class="min-h-fit max-h-full w-full overflow-y-auto">
+                {data.map((item) => (
+                    <tr>
+                        <td class="py-1 px-4">
+                            <div class="flex flex-col items-center gap-2">
+                                <div class={`${item.id === 1 ? 'border-[2px] border-pink-200 from-pink-100 to-pink-200' : 'from-pink-100/30 to-pink-200/30'} bg-gradient-to-r rounded-full h-4 w-4`} />
+                            </div>
+                        </td>
+                        <td class="py-1 px-4">
+                            <div class="w-full">
+                                <Text size="p3" Type="h3" weight="font-medium">
+                                    {item.date}
+                                </Text>
+                            </div>
+                        </td>
+                        <td class="py-1 px-4">
+                            <div class="w-full flex flex-col gap-1 mt-2">
+                                <Text size="p2" Type="h3" weight="font-medium">
+                                    {item.job}
+                                </Text>
+                                <Text size="cpt1" Type="h3" weight="font-medium" color="text-pink-200">
+                                    {item.type}
+                                </Text>
+                            </div>
+                        </td>
+                        <td class="py-1 px-4 w-1/2">
+                            <Text size="p3" Type="p" color="text-subtitle" weight="font-normal">
+                                {item.desc}
+                            </Text>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="rotate-90">
+                            <span class={`${item.id === 3 ? 'text-transparent hidden' : 'text-[#3D3D3D]'} rotate-90 w-fit`}>
+                                ------
+                            </span>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>    
+</div>

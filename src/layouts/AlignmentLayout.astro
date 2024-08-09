@@ -1,0 +1,32 @@
+---
+
+interface Props {
+    type: string;
+}
+
+const { type } = Astro.props;
+let alignment = ''
+
+switch (type) {
+    case 'content':
+        alignment = 'mx-mainScreen';
+    break;
+    case 'sub-content':
+        alignment = 'mx-12';
+    break;
+}
+
+---
+
+<body class={`font-urbanist bg-base ${alignment} bg-[url('/images/dot-bg.svg')] bg-no-repeat`}>
+    <div class="flex absolute w-full -mt-96 justify-between gap-10 -z-50">
+        <div class="w-[200px] h-[200px] blur-[150px] rounded-full bg-pink-100" />
+        <div class="w-[200px] h-[200px] blur-[150px] rounded-full bg-pink-200" />
+        <div class="w-[200px] h-[200px] blur-[150px] rounded-full bg-pink-100" />
+        <div class="w-[200px] h-[200px] blur-[150px] rounded-full bg-pink-100" />
+        <div class="w-[200px] h-[200px] blur-[150px] rounded-full bg-pink-100" />
+    </div>
+    <div class="z-50">
+        <slot />
+    </div>
+<body/>
