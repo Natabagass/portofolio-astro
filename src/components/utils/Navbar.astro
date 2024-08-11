@@ -9,49 +9,67 @@ const data = await getNowPlaying();
 
 ---
 
-    <nav class="mt-8 top-0 bottom-auto w-full inset-x-0">
-        <div class="bg-secondary/50 rounded-full py-4 px-5 z-50 shadow-inner border border-white/10">
-            <div class="flex flex-row w-full justify-between">
-                <div class="flex items-center w-full flex-row gap-2">
-                    {
-                        data?.item !== undefined ?
-                        <>
-                            <BiEqualizer className="text-pink-200 animate-pulse text-2xl" />
-                            <Text weight="font-medium" className="line-clamp-1" Type="h3" size="p3" color="text-gray-100">
-                                {data?.item.name} - {data?.item.album.artists[0].name}
-                            </Text> 
-                        </>
-                        :
-                        <>
-                            <BiSolidSad className="text-pink-200 animate-pulse text-2xl" />
-                            <Text weight="font-medium" Type="h3" size="p3" color="text-gray-100">
-                                {`Not heard any song :(`}
-                            </Text> 
-                        </>
-                    }
-                </div>
-                <ul class="flex flex-row w-full justify-end text-white gap-3 xl:gap-6">
-                    <li>
-                        <Links variant="clear" href="/" className={pathname === '/' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
-                            Home
-                        </Links>             
-                    </li>
-                    <li>
-                        <Links variant="clear" href="/projects" className={pathname === '/projects' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
-                            Projects
-                        </Links>              
-                    </li>
-                    <li>
-                        <Links variant="clear" href="/blogs" className={pathname === '/blogs' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
-                            Blogs
-                        </Links>            
-                    </li>
-                    <li>
-                        <Links variant="primary" className="text-base shadow-buttonPink" href="https://www.linkedin.com/in/natabagass/">
-                            Let's work together
-                        </Links>
-                    </li>
-                </ul>
+<div class="fixed inset-x-0 mx-mainScreen top-10 z-50">
+    <nav class={`scroll mx-auto max-w-screen-2xl bg-secondary/50 rounded-full py-4 px-5 shadow-inner border border-white/10`}>
+        <div class="flex justify-between items-center">
+            <div class="flex w-full items-center gap-2">
+                {
+                    data?.item !== undefined ?
+                    <>
+                        <BiEqualizer className="text-pink-200 animate-pulse text-2xl" />
+                        <Text weight="font-medium" className="line-clamp-1" Type="h3" size="p3" color="text-gray-100">
+                            {data?.item.name} - {data?.item.album.artists[0].name}
+                        </Text> 
+                    </>
+                    :
+                    <>
+                        <BiSolidSad className="text-pink-200 animate-pulse text-2xl" />
+                        <Text weight="font-medium" Type="h3" size="p3" color="text-gray-100">
+                            {`Not heard any song :(`}
+                        </Text> 
+                    </>
+                }
             </div>
+            <ul class="flex gap-3 w-full justify-end xl:gap-6 text-white">
+                <li>
+                    <Links variant="clear" href="/" className={pathname === '/' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
+                        Home
+                    </Links>             
+                </li>
+                <li>
+                    <Links variant="clear" href="/projects" className={pathname === '/projects' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
+                        Projects
+                    </Links>              
+                </li>
+                <li>
+                    <Links variant="clear" href="/blogs" className={pathname === '/blogs' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
+                        Blogs
+                    </Links>            
+                </li>
+                <li>
+                    <Links variant="primary" className="text-base shadow-buttonPink" href="https://www.linkedin.com/in/natabagass/">
+                        Let's work together
+                    </Links>
+                </li>
+            </ul>
         </div>
-</nav>
+    </nav>
+</div>
+
+
+<script>
+    let isScrolled = false;
+    const navbar = document.querySelector('.scroll') as HTMLElement;
+
+    window.addEventListener('scroll', () => {
+        if (navbar) {
+            if (window.scrollY > 25) {
+                navbar.style.backgroundColor = 'rgba(40, 40, 40, 0.8)';
+                isScrolled = true;
+            } else {
+                navbar.style.backgroundColor = 'rgba(40, 40, 40, 0.5)';
+                isScrolled = false;
+            }
+        }
+    });
+</script>

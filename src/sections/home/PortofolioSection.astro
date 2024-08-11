@@ -1,0 +1,18 @@
+---
+import SliderPortofolio from "@components/SliderPortofolio";
+import Text from "@components/Typography";
+import AllignmentLayout from "@layouts/AlignmentLayout";
+
+
+---
+
+<div class="flex flex-col mt-12">
+    <AllignmentLayout>
+        <Text size="h2" Type="h2" weight="font-medium">
+            Portofolios
+        </Text>
+    </AllignmentLayout>
+    <AllignmentLayout variant="sub-content">
+        <SliderPortofolio client:load />
+    </AllignmentLayout>
+</div>

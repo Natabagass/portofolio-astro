@@ -1,13 +1,10 @@
 ---
 import "@fontsource/urbanist";
-import AlignmentLayout from "./AlignmentLayout.astro";
-import Navbar from "../components/utils/Navbar.astro"
 interface Props {
   title: string;
-  type: string;
 }
 
-const { title, type } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <html lang="en">
@@ -19,7 +16,16 @@ const { title, type } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <AlignmentLayout type={type}>
-    <slot />
-  </AlignmentLayout>
+  <body class={`font-urbanist bg-base bg-[url('/images/dot-bg.svg')] bg-no-repeat`}>
+    <div class="flex absolute w-full -mt-96 justify-between gap-10 -z-50">
+        <div class="w-[200px] h-[200px] blur-[150px] rounded-full bg-pink-100" />
+        <div class="w-[200px] h-[200px] blur-[150px] rounded-full bg-pink-200" />
+        <div class="w-[200px] h-[200px] blur-[150px] rounded-full bg-pink-100" />
+        <div class="w-[200px] h-[200px] blur-[150px] rounded-full bg-pink-100" />
+        <div class="w-[200px] h-[200px] blur-[150px] rounded-full bg-pink-100" />
+    </div>
+    <div class="z-20 mb-10">
+        <slot />
+    </div>
+<body/>
 </html>

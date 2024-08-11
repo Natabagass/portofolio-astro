@@ -13,6 +13,7 @@ export default {
 			},
 			colors: {
 				base: '#1A1A1A',
+				title: '#F4F4F4',
 				secondary: '#28282880',
 				gray: {
 					200: '#616161',

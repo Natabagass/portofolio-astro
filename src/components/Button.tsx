@@ -6,14 +6,10 @@ const Button = ({
     children,
     size,
     type,
-    onMouseOver,
-    onMouseLeave,
     padding
 }: {
     variant?: string,
     onClick?: () => void,
-    onMouseOver?: () => void,
-    onMouseLeave?: () => void,
     disable?: boolean,
     type: 'submit' | 'button',
     className?: string,

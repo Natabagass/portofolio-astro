@@ -1,0 +1,55 @@
+---
+import Text from "@components/Typography";
+
+const data = [
+    {
+        id: 1,
+        img: '/public/images/react.svg'
+    },
+    {
+        id: 2,
+        img: '/public/images/next-icon.svg'
+    },
+    {
+        id: 3,
+        img: '/public/images/tailwind.svg'
+    },
+    {
+        id: 4,
+        img: '/public/images/typescript.svg'
+    },
+    {
+        id: 5,
+        img: '/public/images/javascript.svg'
+    },
+    {
+        id: 6,
+        img: '/public/images/laravel.svg'
+    },
+    {
+        id: 7,
+        img: '/public/images/solidity.svg'
+    },
+    {
+        id: 8,
+        img: '/public/images/frammer.svg'
+    },
+]
+---
+
+<div class="mt-12 w-full">
+    <Text size="h2" Type="h2" weight="font-medium">
+        Stacks
+    </Text>
+    <div class="grid mt-6 grid-cols-4 w-full gap-8">
+        {
+            data.map((item) => (
+                <div class="shadow-inner flex w-full justify-center items-center p-8 rounded-2xl border border-white/10 bg-secondary/50">
+                    <div class="relative w-full h-full">
+                        <img src={item.img} alt="Icon - Portofolio" class="w-full h-[100px]" />
+                    </div>
+                </div>
+            ))
+        }
+    </div>
+</div>
