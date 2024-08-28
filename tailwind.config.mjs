@@ -9,7 +9,8 @@ export default {
 				urbanist: ['Urbanist', ...defaultTheme.fontFamily.sans]
 			},
 			margin: {
-				mainScreen: '274px'
+				mainScreen: '274px',
+				secondScreen: '200px'
 			},
 			colors: {
 				base: '#1A1A1A',

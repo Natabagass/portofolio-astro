@@ -1,0 +1,22 @@
+---
+import Text from "@components/react/Typography";
+import AllignmentLayout from "@layouts/AlignmentLayout";
+import Layout from "@layouts/Layout.astro";
+import ShowcaseProject from "@sections/projects/ShowcaseProject.astro";
+---
+
+<Layout title="Projects">
+    <AllignmentLayout>
+        <div class="mt-36 w-full">
+            <Text size="h2" Type="h2" weight="font-medium">
+                Projects
+            </Text> 
+            <Text size="p2" weight="font-medium" Type="p" className="mt-4">
+                I've worked on a variety of projects, ranging from small MVPs to full-scale applications, also developed a wide array of features and functionalities in projects.
+            </Text>   
+        </div>
+    </AllignmentLayout>
+    <AllignmentLayout variant="sub-layout">
+        <ShowcaseProject />
+    </AllignmentLayout>
+</Layout>

@@ -1,0 +1,63 @@
+---
+import CardPortofolio from "@components/react/CardPortofolio";
+
+const data = [
+{
+        id: 1,
+        name: 'Avanzu',
+        img: '/images/avanzu.png',
+        path: 'https://yoavanzu.com',
+        desc: 'Avanzu is a platform for learning according to the topic you want to learn'
+    },
+    {
+        id: 2,
+        name: 'Hodlmagz',
+        img: '/images/hodlmagz.png',
+        path: 'https://hodlmagz.com',
+        desc: 'Hodlmagz is a platform where you want to learn about crypto, Know some event about crypto, and other things about crypto.'
+    },
+    {
+        id: 3,
+        name: 'Mashida',
+        img: '/images/mashida.png',
+        path: 'https://mashida.vercel.app',
+        desc: 'Mashida is a company profile website that has been restyled for their old website'
+    },
+    {
+        id: 4,
+        name: 'Metroreload',
+        img: '/images/metroreload.png',
+        path: 'https://metroreload.biz',
+        desc: 'Metroreload is a company profile website'
+    },
+    {
+        id: 5,
+        name: "Invent 2023",
+        img: "/images/invent.png",
+        path: "https://invent2023.com",
+        desc: 'Invent is the website that manages Industrial Engineering competitions at Universitas Brawijaya'
+    },
+    {
+        id: 6,
+        name: "Infruit",
+        img: "/images/infruit.png",
+        path: "https://infruit.vercel.app",
+        desc: "Infruit is a website that functions as a place to buy and sell fruit whose grade is not good"
+    },
+];
+---
+
+<div class="grid grid-cols-3 gap-4 mt-10 h-full w-full">
+  {
+    data.map((item) => (
+        <CardPortofolio 
+            client:load
+            id={item.id}
+            img={item.img}
+            name={item.name}
+            path={item.path}
+            desc={item.desc}
+        />
+    ))
+  }
+</div>

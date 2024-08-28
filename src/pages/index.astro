@@ -2,26 +2,22 @@
 import HeroSection from "@sections/home/HeroSection.astro"
 import DescriptionSection from "@sections/home/DescriptionSection.astro"
 import Layout from '../layouts/Layout.astro';
-import Navbar from "@components/utils/Navbar.astro";
 import WorkExperience from "@sections/home/WorkExperience.astro";
 import AllignmentLayout from "@layouts/AlignmentLayout";
 import PortofolioSection from "@sections/home/PortofolioSection.astro";
 import StacksSection from "@sections/home/StacksSection.astro";
 import OfferWorkSection from "@sections/home/OfferWorkSection.astro";
-import Footer from "@components/utils/Footer.astro";
 ---
 
 <Layout title="Bagas Meganata">
 	<AllignmentLayout>
-		<Navbar />
 		<HeroSection />
-		<DescriptionSection />
-		<WorkExperience/>
+		<!-- <DescriptionSection />
+		<WorkExperience/> -->
 	</AllignmentLayout>
-	<PortofolioSection />
+	<!-- <PortofolioSection />
 	<AllignmentLayout>
 		<StacksSection />
 		<OfferWorkSection />
-		<Footer />
-	</AllignmentLayout>
+	</AllignmentLayout> -->
 </Layout>

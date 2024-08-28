@@ -29,9 +29,15 @@ const AllignmentLayout = ({
                     {children}
                 </div>
             )
+        case 'sub-layout':
+            return (
+                <div className={`${className} mx-secondScreen`}>
+                    {children}
+                </div>
+            )
         default:
             return (
-                <div className={`${className} mx-mainScreen`}>
+                <div className={`${className} mx-6 lg:mx-[200px] xl:mx-mainScreen`}>
                     {children}
                 </div>
             )

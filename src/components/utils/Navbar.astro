@@ -1,36 +1,37 @@
 ---
-import Text from "../Typography";
-import Links from "../Links"
+import Text from "../react/Typography";
+import Links from "../react/Links"
 const { pathname } = Astro.url
 import { getNowPlaying } from '../../../api/spotify'; // Pastikan path ini sesuai dengan lokasi file
 import { BiEqualizer, BiSolidSad } from "react-icons/bi";
+import { RxHamburgerMenu } from "react-icons/rx";
 
 const data = await getNowPlaying();
 
 ---
 
-<div class="fixed inset-x-0 mx-mainScreen top-10 z-50">
+<div class="fixed inset-x-0 lg:mx-[200px] xl:mx-mainScreen mx-6 top-10 z-50">
     <nav class={`scroll mx-auto max-w-screen-2xl bg-secondary/50 rounded-full py-4 px-5 shadow-inner border border-white/10`}>
         <div class="flex justify-between items-center">
-            <div class="flex w-full items-center gap-2">
+            <div class="flex w-[70%] sm:w-full lg:w-[60%] items-center gap-2">
                 {
                     data?.item !== undefined ?
                     <>
-                        <BiEqualizer className="text-pink-200 animate-pulse text-2xl" />
+                        <BiEqualizer className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
                         <Text weight="font-medium" className="line-clamp-1" Type="h3" size="p3" color="text-gray-100">
                             {data?.item.name} - {data?.item.album.artists[0].name}
                         </Text> 
                     </>
                     :
                     <>
-                        <BiSolidSad className="text-pink-200 animate-pulse text-2xl" />
+                        <BiSolidSad className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
                         <Text weight="font-medium" Type="h3" size="p3" color="text-gray-100">
                             {`Not heard any song :(`}
                         </Text> 
                     </>
                 }
             </div>
-            <ul class="flex gap-3 w-full justify-end xl:gap-6 text-white">
+            <ul class="hidden lg:flex gap-3 w-full items-center justify-end xl:gap-4 text-white">
                 <li>
                     <Links variant="clear" href="/" className={pathname === '/' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
                         Home
@@ -47,11 +48,14 @@ const data = await getNowPlaying();
                     </Links>            
                 </li>
                 <li>
-                    <Links variant="primary" className="text-base shadow-buttonPink" href="https://www.linkedin.com/in/natabagass/">
-                        Let's work together
+                    <Links variant="primary" className="text-base shadow-buttonPink line-clamp-1" href="mailto:megantabagas@gmail.com" target="_blank">
+                        Reach me out!
                     </Links>
                 </li>
             </ul>
+            <span>
+                <RxHamburgerMenu className="text-white md:hidden block text-xl" />
+            </span>
         </div>
     </nav>
 </div>
