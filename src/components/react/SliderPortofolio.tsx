@@ -37,12 +37,12 @@ const SliderPortofolio = () => {
                         spaceBetween: 10,
                     },
                     500: {
-                        slidesPerView: 2.5,
-                        spaceBetween: 5,
+                        slidesPerView: 1.5,
+                        spaceBetween: 10,
                     },
                     300: {
-                        slidesPerView: 1.5,
-                        spaceBetween: 5,
+                        slidesPerView: 1.2,
+                        spaceBetween: 10,
                     },
                 }}
                 className="mySwiper mt-4"

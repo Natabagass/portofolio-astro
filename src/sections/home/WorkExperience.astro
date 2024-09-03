@@ -36,47 +36,49 @@ const data = [
         </Text>
     </div>
     <div class="bg-secondary/50 flex flex-col gap-4 p-8">
-        <table class="w-full relative overflow-auto">
-            <tbody class="min-h-fit max-h-full w-full overflow-y-auto">
-                {data.map((item) => (
-                    <tr>
-                        <td class="py-1 px-4">
-                            <div class="flex flex-col items-center gap-2">
-                                <div class={`${item.id === 1 ? 'border-[2px] border-pink-200 from-pink-100 to-pink-200 animate-pulse' : 'from-pink-100/30 to-pink-200/30'} bg-gradient-to-r rounded-full h-4 w-4`} />
-                            </div>
-                        </td>
-                        <td class="py-1 px-4">
-                            <div class="w-full">
-                                <Text size="p3" Type="h3" weight="font-medium">
-                                    {item.date}
+        <div class="w-full overflow-x-auto overflow-y-hidden">
+            <table class="w-full min-w-[600px] relative">
+                <tbody class="min-h-fit max-h-full w-full">
+                    {data.map((item) => (
+                        <tr>
+                            <td class="py-1 px-4">
+                                <div class="flex flex-col items-center gap-2">
+                                    <div class={`${item.id === 1 ? 'border-[2px] border-pink-200 from-pink-100 to-pink-200 animate-pulse' : 'from-pink-100/30 to-pink-200/30'} bg-gradient-to-r rounded-full h-4 w-4`} />
+                                </div>
+                            </td>
+                            <td class="py-1 px-4">
+                                <div class="w-full">
+                                    <Text size="p3" Type="h3" weight="font-medium">
+                                        {item.date}
+                                    </Text>
+                                </div>
+                            </td>
+                            <td class="py-1 px-4">
+                                <div class="w-full flex flex-col gap-1 mt-2">
+                                    <Text size="p2" Type="h3" weight="font-medium">
+                                        {item.job}
+                                    </Text>
+                                    <Text size="cpt1" Type="h3" weight="font-medium" color="text-pink-200">
+                                        {item.type}
+                                    </Text>
+                                </div>
+                            </td>
+                            <td class="py-1 px-4 w-1/2">
+                                <Text size="p3" Type="p" color="text-subtitle" weight="font-normal">
+                                    {item.desc}
                                 </Text>
-                            </div>
-                        </td>
-                        <td class="py-1 px-4">
-                            <div class="w-full flex flex-col gap-1 mt-2">
-                                <Text size="p2" Type="h3" weight="font-medium">
-                                    {item.job}
-                                </Text>
-                                <Text size="cpt1" Type="h3" weight="font-medium" color="text-pink-200">
-                                    {item.type}
-                                </Text>
-                            </div>
-                        </td>
-                        <td class="py-1 px-4 w-1/2">
-                            <Text size="p3" Type="p" color="text-subtitle" weight="font-normal">
-                                {item.desc}
-                            </Text>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="rotate-90">
-                            <span class={`${item.id === 3 ? 'text-transparent hidden' : 'text-[#3D3D3D]'} rotate-90 w-fit`}>
-                                ------
-                            </span>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="rotate-90">
+                                <span class={`${item.id === 3 ? 'text-transparent hidden' : 'text-[#3D3D3D]'} rotate-90 w-fit`}>
+                                    ------
+                                </span>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     </div>    
 </div>

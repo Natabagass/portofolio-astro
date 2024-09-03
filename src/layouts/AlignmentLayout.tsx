@@ -25,13 +25,13 @@ const AllignmentLayout = ({
             )
         case 'sub-content':
             return (
-                <div className={`${className} mx-12`}>
+                <div className={`${className} mx-6 sm:mx-12`}>
                     {children}
                 </div>
             )
         case 'sub-layout':
             return (
-                <div className={`${className} mx-secondScreen`}>
+                <div className={`${className} mx-6 lg:mx-secondScreen`}>
                     {children}
                 </div>
             )

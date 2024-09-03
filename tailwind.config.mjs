@@ -5,11 +5,14 @@ export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		extend: {
+			screens: {
+				xs: '450px'
+			},
 			fontFamily: {
 				urbanist: ['Urbanist', ...defaultTheme.fontFamily.sans]
 			},
 			margin: {
-				mainScreen: '274px',
+				mainScreen: '250px',
 				secondScreen: '200px'
 			},
 			colors: {

@@ -41,12 +41,12 @@ const data = [
     <Text size="h2" Type="h2" weight="font-medium">
         Stacks
     </Text>
-    <div class="grid mt-6 grid-cols-4 w-full gap-8">
+    <div class="grid mt-6 grid-cols-2 sm:grid-cols-4 w-full gap-8">
         {
             data.map((item) => (
                 <div class="shadow-inner flex w-full justify-center items-center p-8 rounded-2xl border border-white/10 bg-secondary/50">
                     <div class="relative w-full h-full">
-                        <img src={item.img} alt="Icon - Portofolio" class="w-full h-[100px]" />
+                        <img src={item.img} alt="Icon - Portofolio" class="w-full h-[60px] lg:h-[100px]" />
                     </div>
                 </div>
             ))

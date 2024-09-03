@@ -19,12 +19,12 @@ const img = [
 ---
 
 <div class="flex flex-col mt-12 gap-4 items-center">
-    <Text size="p2" weight="font-normal">Donate a coffee - RSS</Text>
+    <Text size="p3 sm:p2" weight="font-normal">Donate a coffee - RSS</Text>
     <div class="flex flex-row w-full items-center justify-center gap-4">
         {
             img.map((item) => (
                 <div class="w-fit h-full relative">
-                    <img src={item.img} alt="Icon - Portofolio" />
+                    <img src={item.img} class="h-[35px] sm:h-[40px]" alt="Icon - Portofolio" />
                 </div>
             ))
         }

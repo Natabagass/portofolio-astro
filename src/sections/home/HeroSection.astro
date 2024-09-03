@@ -3,40 +3,42 @@ import Text from "@components/react/Typography"
 ---
 
 <div class="mt-32 w-full">
-    <Text weight="font-medium" Type="h1" size="text-h1 md:text-d3 xl:text-[68px]" className="w-full flex gap-x-6 flex-row items-center flex-wrap whitespace-nowrap">
+    <h1 class="w-full flex gap-4 sm:gap-6 flex-row h2 sm:h1 xl:text-[68px] text-white items-center xl:justify-start justify-center flex-wrap whitespace-nowrap">
         Hi, Im
-        <span class="bg-secondary/50 py-2 px-14 shadow-inner rounded-full">
-            <img alt="Icon - Portofolio" src="/icons/eyes.svg" />
+        <span class="bg-secondary/50 py-1 md:py-2 px-7 xl:px-14 shadow-inner rounded-full">
+            <img alt="Icon - Portofolio" class="w-10" src="/icons/eyes.svg" />
         </span> 
         <span>
             Bagas Meganata
         </span>
-        <span class="flex flex-row items-center gap-x-10">
+        <span class="flex sm:flex-row items-center w-full justify-center xl:justify-start sm:gap-x-4">
             a Frontend
             <button class="open">
-                <img alt="Icon - Portofolio" class="w-20" src="/images/not-open.svg" />
+                <img alt="Icon - Portofolio" class="w-12 sm:w-20" src="/images/not-open.svg" />
             </button> 
             Developer
         </span>
-        <span class="flex flex-row gap-x-12 lg:gap-x-[60px]">
+        <span class="flex flex-col sm:flex-row w-full sm:items-center gap-x-5 justify-center xl:justify-start">
+            <span class="flex flex-row xl:w-full justify-center sm:justify-start gap-x-4 xl:gap-x-10">
                 at
-            <img alt="Icon - Portofolio" src="/images/cashplus.svg" />
+                    <img alt="Icon - Portofolio" class="w-20 sm:w-28" src="/images/cashplus.svg" />
                 based on
-            <div class="flex flex-row items-center gap-x-4">
+            </span>
+            <span class="flex flex-row xl:w-full sm:mt-0 mt-4 justify-center items-center gap-x-2">
                 <span>
-                    <img alt="Icon - Portofolio" src="/images/maps.svg" />
+                    <img alt="Icon - Portofolio" class="w-10 sm:w-16" src="/images/maps.svg" />
                 </span> 
-                <div class="flex flex-col gap-2">
-                    <Text weight="font-medium" Type="span" size="text-xl">
+                <span class="flex flex-col lg:gap-2">
+                    <Text weight="font-medium" Type="span" size="text-lg md:text-xl">
                         Malang
                     </Text>
-                    <Text weight="font-medium" Type="span" size="text-xl" color="text-gray-200">
+                    <Text weight="font-medium" Type="span" size="text-lg md:text-xl" color="text-gray-200">
                         Indonesia
                     </Text>
-                </div>
-            </div>
+                </span>
+            </span>
         </span> 
-    </Text>
+    </h1>
 </div>
 
 <script>
