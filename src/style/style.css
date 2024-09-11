@@ -18,6 +18,28 @@
     object-fit: cover;
 }
 
+.link {
+    text-decoration: underline;
+    color: #F4F4F4;
+}
+
+.link:hover {
+    background-color: #FABFFF;
+    padding: 2px 4px 2px 4px;
+    color: #000;
+    border-radius: 5px;
+}
+
+.numbered {
+    list-style: decimal;
+    margin-left: 36px;
+}
+
+.list {
+    list-style-type: disc;
+    margin-left: 36px;
+}
+
 .thecard:hover {
     transform: rotateY(180deg);
     pointer-events: auto;

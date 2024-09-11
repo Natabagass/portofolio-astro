@@ -2,7 +2,27 @@
 import Text from "@components/react/Typography";
 import AllignmentLayout from "@layouts/AlignmentLayout";
 import Layout from "@layouts/Layout.astro";
-import ShowcaseProject from "@sections/projects/ShowcaseProject.astro";
+
+const data = [
+    {
+        id: 1,
+        year: 2024,
+        data: [
+            {
+                id: 1,
+                date: '25 March 2024',
+                url: '5-ways-of-adaptability-in-bangkit-academy-2024',
+                title: '5 Ways of Adaptability in Bangkit Academy 2024'
+            },
+            {
+                id: 2,
+                date: '7 September 2024',
+                url: 'building-a-project-with-astro',
+                title: 'Building a Project With Astro'
+            }
+        ]
+    },
+]
 ---
 
 <Layout title="Blogs">
@@ -12,8 +32,33 @@ import ShowcaseProject from "@sections/projects/ShowcaseProject.astro";
                 Blogs
             </Text> 
             <Text size="p2" weight="font-medium" Type="p" className="mt-4">
-                Rreferences, and tutorials on web development and more            
+                References, tutorials on web development and other things I want to write about            
             </Text>   
         </div>
+        {
+            data.map((item) => (
+                <div class="bg-[#1C1C1C30] mt-12 shadow-inner rounded-3xl">
+                <div class="p-8 w-full flex flex-row justify-between">
+                    <Text size="h2" Type="h2" weight="font-medium">
+                        {item.year}
+                    </Text>
+                </div>
+                    <div class="bg-secondary/50 flex flex-col gap-4 p-8">
+                        {
+                            item.data.map((sub) => (
+                                <a href={`/blogs/${sub.url}`} class="flex md:flex-row flex-col w-full justify-between">
+                                    <Text size="p2" color="text-pink-200" Type="h3" weight="font-medium">
+                                        {sub.title}
+                                    </Text>
+                                    <Text size="p2" Type="h4" className="md:mt-0 mt-2" weight="font-medium">
+                                        {sub.date}
+                                    </Text>
+                                </a>
+                            ))
+                        }
+                    </div>    
+                </div>
+            ))
+        }
     </AllignmentLayout>
 </Layout>

@@ -1,0 +1,36 @@
+---
+import "@fontsource/urbanist";
+import '../style/style.css';
+import Layout from "./Layout.astro";
+import AllignmentLayout from "./AlignmentLayout";
+import Text from "@components/react/Typography";
+
+
+const { frontmatter } = Astro.props;
+
+---
+
+
+<Layout title="Blogs">
+    <AllignmentLayout>
+        <div class="mt-36 text-white">
+            <Text size="h1" weight="font-medium">
+                {frontmatter.title}
+            </Text>
+            <div class="mt-6 w-full flex gap-4">
+                {
+                    frontmatter.tag.map((item: { name: string, id: number }) => (
+                        <div class="bg-secondary/50 shadow-inner rounded-full px-6 py-2">
+                            <Text size="p3" weight="font-normal" className="font-inter" >
+                                {item.name}
+                            </Text>
+                        </div>
+                    ))
+                }
+            </div>
+            <div class="mt-6 font-inter">
+                <slot />
+            </div>
+        </div>
+    </AllignmentLayout>
+</Layout>

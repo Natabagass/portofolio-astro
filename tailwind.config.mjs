@@ -9,7 +9,8 @@ export default {
 				xs: '450px'
 			},
 			fontFamily: {
-				urbanist: ['Urbanist', ...defaultTheme.fontFamily.sans]
+				urbanist: ['Urbanist', ...defaultTheme.fontFamily.sans],
+				inter: ['Inter', ...defaultTheme.fontFamily.sans]
 			},
 			margin: {
 				mainScreen: '250px',

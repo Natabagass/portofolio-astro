@@ -5,60 +5,84 @@ const { pathname } = Astro.url
 import { getNowPlaying } from '../../../api/spotify'; // Pastikan path ini sesuai dengan lokasi file
 import { BiEqualizer, BiSolidSad } from "react-icons/bi";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { RiCloseLargeLine } from "react-icons/ri";
 
 const data = await getNowPlaying();
 
 ---
 
-<div class="fixed inset-x-0 lg:mx-[200px] xl:mx-mainScreen mx-6 top-10 z-50">
-    <nav class={`scroll mx-auto max-w-screen-2xl bg-secondary/50 rounded-full py-4 px-5 shadow-inner border border-white/10`}>
-        <div class="flex justify-between items-center">
-            <div class="flex w-[70%] sm:w-full lg:w-[60%] items-center gap-2">
-                {
-                    data?.item !== undefined ?
-                    <>
-                        <BiEqualizer className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
-                        <Text weight="font-medium" className="line-clamp-1" Type="h3" size="p3" color="text-gray-100">
-                            {data?.item.name} - {data?.item.album.artists[0].name}
-                        </Text> 
-                    </>
-                    :
-                    <>
-                        <BiSolidSad className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
-                        <Text weight="font-medium" Type="h3" size="p3" color="text-gray-100">
-                            {`Not heard any song :(`}
-                        </Text> 
-                    </>
-                }
+<>
+    <div class="fixed inset-x-0 lg:mx-[200px] xl:mx-mainScreen top-0 z-[80]">
+        <div id="menu" class="hidden h-screen absolute bg-secondary/90 z-base md:hidden w-full">
+            <div class="bg-pink-200/80 h-full p-6 w-full text-white z-50">
+                <div id="closeMenuButton" class="w-full flex justify-end cursor-pointer">
+                    <RiCloseLargeLine className="w-6 h-6" />
+                </div>
+                <div class="mt-8">
+                    <ul class="flex flex-col gap-4 w-full h3 font-semibold text-white">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/blogs">Blogs</a></li>
+                        <li class="w-full flex">
+                            <a class="px-4 py-2 w-full flex justify-center bg-secondary/80 shadow-inner rounded-3xl">
+                                Reach me out!
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <ul class="hidden lg:flex gap-3 w-full items-center justify-end xl:gap-4 text-white">
-                <li>
-                    <Links variant="clear" href="/" className={pathname === '/' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
-                        Home
-                    </Links>             
-                </li>
-                <li>
-                    <Links variant="clear" href="/projects" className={pathname === '/projects' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
-                        Projects
-                    </Links>              
-                </li>
-                <li>
-                    <Links variant="clear" href="/blogs" className={pathname === '/blogs' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
-                        Blogs
-                    </Links>            
-                </li>
-                <li>
-                    <Links variant="primary" className="text-base shadow-buttonPink line-clamp-1" href="mailto:megantabagas@gmail.com" target="_blank">
-                        Reach me out!
-                    </Links>
-                </li>
-            </ul>
-            <span>
-                <RxHamburgerMenu className="text-white md:hidden block text-xl" />
-            </span>
         </div>
-    </nav>
-</div>
+    </div>
+    <div class="fixed inset-x-0 lg:mx-[200px] xl:mx-mainScreen mx-6 top-10 z-50">
+        <nav class={`scroll mx-auto max-w-screen-2xl bg-secondary/50 rounded-full py-4 px-5 shadow-inner border border-white/10`}>
+            <div class="flex justify-between items-center">
+                <div class="flex w-[70%] sm:w-full lg:w-[60%] items-center gap-2">
+                    {
+                        data?.item !== undefined ?
+                        <>
+                            <BiEqualizer className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
+                            <Text weight="font-medium" className="line-clamp-1" Type="h3" size="p3" color="text-gray-100">
+                                {data?.item.name} - {data?.item.album.artists[0].name}
+                            </Text> 
+                        </>
+                        :
+                        <>
+                            <BiSolidSad className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
+                            <Text weight="font-medium" Type="h3" size="p3" color="text-gray-100">
+                                {`Not heard any song :(`}
+                            </Text> 
+                        </>
+                    }
+                </div>
+                <ul class="hidden lg:flex gap-3 w-full items-center justify-end xl:gap-4 text-white">
+                    <li>
+                        <Links variant="clear" href="/" className={pathname === '/' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
+                            Home
+                        </Links>             
+                    </li>
+                    <li>
+                        <Links variant="clear" href="/projects" className={pathname === '/projects' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
+                            Projects
+                        </Links>              
+                    </li>
+                    <li>
+                        <Links variant="clear" href="/blogs" className={pathname === '/blogs' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
+                            Blogs
+                        </Links>            
+                    </li>
+                    <li>
+                        <Links variant="primary" className="text-base shadow-buttonPink line-clamp-1" href="mailto:megantabagas@gmail.com" target="_blank">
+                            Reach me out!
+                        </Links>
+                    </li>
+                </ul>
+                <span id="openMenuButton">
+                    <RxHamburgerMenu className="text-white md:hidden block text-xl" />
+                </span>
+            </div>
+        </nav>
+    </div>
+</>
 
 
 <script>
@@ -75,5 +99,21 @@ const data = await getNowPlaying();
                 isScrolled = false;
             }
         }
+    });
+</script>
+
+<script>
+    const menu = document.getElementById('menu');
+    const openMenuButton = document.getElementById('openMenuButton');
+    const closeMenuButton = document.getElementById('closeMenuButton');
+
+    openMenuButton?.addEventListener('click', function() {
+        menu?.classList.remove('hidden');
+        menu?.classList.add('flex');
+    });
+
+    closeMenuButton?.addEventListener('click', function() {
+        menu?.classList.remove('flex');
+        menu?.classList.add('hidden');
     });
 </script>

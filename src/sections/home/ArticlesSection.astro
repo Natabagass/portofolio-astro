@@ -1,0 +1,44 @@
+---
+import Button from "@components/react/Button";
+import Text from "@components/react/Typography";
+
+const data = [
+    {
+        id: 1,
+        date: '25 March 2024',
+        url: '5-ways-of-adaptability-in-bangkit-academy-2024',
+        title: '5 Ways of Adaptability in Bangkit Academy 2024'
+    },
+    {
+        id: 2,
+        date: '7 September 2024',
+        url: 'building-a-project-with-astro',
+        title: 'Building a Project With Astro'
+    },
+]
+---
+
+<div class="bg-[#1C1C1C30] mt-12 shadow-inner rounded-3xl">
+    <div class="p-8 w-full flex flex-row justify-between">
+        <Text size="h2" Type="h2" weight="font-medium">
+            Articles
+        </Text>
+        <a href="/blogs" class="rounded-full px-4 py-2 shadow-inner bg-secondary/50 text-white">
+            All Articles
+        </a>
+    </div>
+    <div class="bg-secondary/50 flex flex-col gap-4 p-8">
+        {
+            data.map((item) => (
+                <a href={`/blogs/${item.url}`} class="flex md:flex-row flex-col w-full justify-between">
+                    <Text size="p2" color="text-pink-200" Type="h3" weight="font-medium">
+                        {item.title}
+                    </Text>
+                    <Text size="p2" Type="h4" className="md:mt-0 mt-2" weight="font-medium">
+                        {item.date}
+                    </Text>
+                </a>
+            ))
+        }
+    </div>    
+</div>
