@@ -42,7 +42,7 @@ const data = await getNowPlaying();
                         <>
                             <BiEqualizer className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
                             <Text weight="font-medium" className="line-clamp-1" Type="h3" size="p3" color="text-gray-100">
-                                {data?.item.name} - {data?.item.album.artists[0].name}
+                                Currently playing {data?.item.name} - {data?.item.album.artists[0].name}
                             </Text> 
                         </>
                         :
