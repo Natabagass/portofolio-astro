@@ -6,19 +6,21 @@ import '../style/style.css';
 
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = "Frontend developer building clear, thoughtful web experiences. Selected work and writing by Bagas Meganata." } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#1A1A1A" />
     <link rel="icon" type="image/svg+xml" href="/icons.png" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{title === "Bagas Meganata" ? title : `${title} | Bagas Meganata`}</title>
   </head>
   <body class={`font-urbanist bg-base bg-[url('/images/dot-bg.svg')] bg-no-repeat`}>
     <div class="flex absolute w-full -mt-96 justify-between gap-10 -z-50">
@@ -33,5 +35,5 @@ const { title } = Astro.props;
         <slot />
         <Footer />
     </div>
-<body/>
+</body>
 </html>

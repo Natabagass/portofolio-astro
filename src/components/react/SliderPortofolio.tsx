@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import Text from "./Typography";
 import CardPortofolio from "./CardPortofolio";
 
 const SliderPortofolio = () => {

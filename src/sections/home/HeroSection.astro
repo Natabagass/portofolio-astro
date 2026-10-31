@@ -2,36 +2,36 @@
 import Text from "@components/react/Typography"
 ---
 
-<div class="mt-32 w-full">
+<div class="mt-32 w-full" data-hero>
     <h1 class="w-full flex gap-4 sm:gap-6 flex-row h2 sm:h1 xl:text-[68px] text-white items-center xl:justify-start 2xl:justify-center justify-center flex-wrap whitespace-nowrap">
-        Hi, Im
+        Hi, I’m
         <span class="bg-secondary/50 py-1 md:py-2 px-7 xl:px-14 shadow-inner rounded-full">
             <img alt="Icon - Portofolio" class="w-10" src="/icons/eyes.svg" />
         </span> 
-        <span>
+        <span data-hero-piece>
             Bagas Meganata
         </span>
-        <span class="flex sm:flex-row items-center w-full xl:justify-start 2xl:justify-center justify-center sm:gap-x-4">
+        <span data-hero-piece class="flex sm:flex-row items-center w-full xl:justify-start 2xl:justify-center justify-center sm:gap-x-4">
             a Frontend
-            <button class="open">
+            <button type="button" class="open" aria-label="Toggle eyes" aria-pressed="false">
                 <img alt="Icon - Portofolio" class="w-12 sm:w-20" src="/images/not-open.svg" />
             </button> 
             Developer
         </span>
-        <span class="flex flex-col sm:flex-row w-full sm:items-center gap-x-5 xl:justify-start 2xl:justify-center justify-center">
+        <span data-hero-piece class="flex flex-col sm:flex-row w-full sm:items-center gap-x-5 xl:justify-start 2xl:justify-center justify-center">
             <span class="flex flex-row justify-center sm:justify-start gap-x-4 xl:gap-x-10">
                 currently
                 <!-- at
                     <img alt="Icon - Portofolio" class="w-20 sm:w-28" src="/images/cashplus.svg" /> -->
-                based on
+                based in
             </span>
             <span class="flex flex-row sm:mt-0 mt-4 justify-center items-center gap-x-2">
                 <span>
                     <img alt="Icon - Portofolio" class="w-10 sm:w-16" src="/images/maps.svg" />
                 </span> 
-                <span class="flex flex-col lg:gap-2">
+                <span data-hero-piece class="flex flex-col lg:gap-2">
                     <Text weight="font-medium" Type="span" size="text-lg md:text-xl">
-                        Malang
+                        Yogyakarta
                     </Text>
                     <Text weight="font-medium" Type="span" size="text-lg md:text-xl" color="text-gray-200">
                         Indonesia
@@ -43,15 +43,49 @@ import Text from "@components/react/Typography"
 </div>
 
 <script>
-    const button = document.querySelector('.open');
-    const image = button?.querySelector('img');
+    import { gsap } from 'gsap';
+
+    const heroPieces = document.querySelectorAll<HTMLElement>('[data-hero-piece]');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion && heroPieces.length) {
+        gsap.from(heroPieces, {
+            y: 20,
+            autoAlpha: 0,
+            duration: 0.65,
+            stagger: 0.09,
+            ease: 'power3.out',
+            clearProps: 'transform,opacity,visibility',
+        });
+    }
+
+    const button = document.querySelector<HTMLButtonElement>('.open');
+    const image = button?.querySelector<HTMLImageElement>('img');
 
     if (button && image) {
         const originalSrc = '/images/not-open.svg';
         const newSrc = '/images/open.svg';
 
         button.addEventListener('click', () => {
-            image.src = image.src.includes(originalSrc) ? newSrc : originalSrc;
+            const isOpen = button.getAttribute('aria-pressed') !== 'true';
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            gsap.killTweensOf(image);
+            gsap.to(image, {
+                rotationY: 90,
+                duration: reduceMotion ? 0 : 0.16,
+                ease: 'power2.in',
+                onComplete: () => {
+                    image.src = isOpen ? newSrc : originalSrc;
+                    button.setAttribute('aria-pressed', String(isOpen));
+                    gsap.fromTo(image, { rotationY: -90, scale: 0.9 }, {
+                        rotationY: 0,
+                        scale: 1,
+                        duration: reduceMotion ? 0 : 0.35,
+                        ease: 'back.out(1.7)',
+                    });
+                },
+            });
         });
     }
 </script>

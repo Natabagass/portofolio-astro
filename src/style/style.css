@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .swiper {
     width: 100%;
     height: 100%;
@@ -40,32 +44,106 @@
     margin-left: 36px;
 }
 
-.thecard:hover {
-    transform: rotateY(180deg);
-    pointer-events: auto;
+.mobile-menu-link {
+    display: block;
+    border-radius: 1rem;
+    padding: 0.9rem 1rem;
+    transition: background-color 180ms ease, color 180ms ease;
 }
 
-.thecard {
+.mobile-menu-link:not(.mobile-menu-link--cta):hover,
+.mobile-menu-link:not(.mobile-menu-link--cta)[aria-current="page"] {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fabfff;
+}
+
+.stack-card {
+    transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+.stack-card:hover {
+    border-color: rgba(250, 191, 255, 0.35);
+    background-color: rgba(40, 40, 40, 0.8);
+}
+
+.article-link {
+    transition: background-color 180ms ease;
+}
+
+.article-link:hover,
+.article-link:focus-visible {
+    background-color: rgba(255, 255, 255, 0.035);
+}
+
+.blog-content {
+    max-width: 72rem;
+}
+
+.blog-content__body {
+    max-width: 72ch;
+    color: #d4d4d4;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.blog-content__body h2 {
+    margin: 2.5rem 0 1rem;
+    color: #f4f4f4;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.25;
+}
+
+.blog-content__body p {
+    margin: 1.1rem 0;
+}
+
+.blog-content__body a {
+    color: #fabfff;
+    text-decoration: underline;
+    text-decoration-color: rgba(250, 191, 255, 0.45);
+    text-underline-offset: 0.2em;
+}
+
+.blog-content__body a:hover {
+    color: #f3caf6;
+}
+
+.blog-content__body ul,
+.blog-content__body ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.blog-content__body ul {
+    list-style: disc;
+}
+
+.blog-content__body ol {
+    list-style: decimal;
+}
+
+.portfolio-card {
+    perspective: 1200px;
+}
+
+.portfolio-card__inner {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     transform-style: preserve-3d;
-    transition: all 0.5s ease;
-    perspective: 1000px;
+    will-change: transform;
 }
 
-.thefront {
+.portfolio-card__face {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     backface-visibility: hidden;
-    z-index: 5;
+    -webkit-backface-visibility: hidden;
 }
 
-.theback {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
+.portfolio-card__front {
+    transform: rotateY(0deg);
+}
+
+.portfolio-card__back {
     transform: rotateY(180deg);
 }

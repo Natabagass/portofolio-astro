@@ -12,29 +12,37 @@ const data = await getNowPlaying();
 ---
 
 <>
-    <div class="fixed inset-x-0 lg:mx-[200px] xl:mx-mainScreen top-0 z-[80]">
-        <div id="menu" class="hidden h-screen absolute bg-secondary/90 z-base md:hidden w-full">
-            <div class="bg-pink-200/80 h-full p-6 w-full text-white z-50">
-                <div id="closeMenuButton" class="w-full flex justify-end cursor-pointer">
-                    <RiCloseLargeLine className="w-6 h-6" />
-                </div>
-                <div class="mt-8">
-                    <ul class="flex flex-col gap-4 w-full h3 font-semibold text-white">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/projects">Projects</a></li>
-                        <li><a href="/blogs">Blogs</a></li>
-                        <li class="w-full flex">
-                            <a class="px-4 py-2 w-full flex justify-center bg-secondary/80 shadow-inner rounded-3xl">
-                                Reach me out!
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+    <div
+        id="menu"
+        class="fixed inset-0 z-[90] hidden bg-base/90 px-6 pb-8 pt-24 backdrop-blur-xl lg:hidden"
+        aria-hidden="true"
+    >
+        <div class="mx-auto w-full max-w-lg rounded-3xl border border-white/10 bg-secondary/80 p-6 shadow-inner">
+            <div class="flex items-center justify-between">
+                <Text weight="font-medium" Type="h2" size="h3">Navigate</Text>
+                <button
+                    id="closeMenuButton"
+                    type="button"
+                    aria-label="Close navigation"
+                    class="rounded-full border border-white/10 p-3 text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-pink-200"
+                >
+                    <RiCloseLargeLine className="h-5 w-5" aria-hidden="true" />
+                </button>
             </div>
+            <ul class="mt-6 flex flex-col gap-2 text-white">
+                <li><a class="mobile-menu-link" aria-current={pathname === '/' ? 'page' : undefined} href="/">Home</a></li>
+                <li><a class="mobile-menu-link" aria-current={pathname === '/projects' ? 'page' : undefined} href="/projects">Projects</a></li>
+                <li><a class="mobile-menu-link" aria-current={pathname === '/blogs' ? 'page' : undefined} href="/blogs">Blogs</a></li>
+                <li>
+                    <a class="mobile-menu-link mobile-menu-link--cta mt-3 flex justify-center bg-gradient-to-r from-pink-200 to-pink-100 text-[#1A1A1A]" href="mailto:meganatabagas@gmail.com">
+                        Reach me out!
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
     <div class="fixed inset-x-0 lg:mx-[200px] xl:mx-mainScreen mx-6 top-10 z-50">
-        <nav class={`scroll mx-auto max-w-screen-2xl bg-secondary/50 rounded-full py-4 px-5 shadow-inner border border-white/10`}>
+        <nav class="scroll mx-auto max-w-screen-2xl rounded-full border border-white/10 bg-secondary/50 px-5 py-4 shadow-inner transition-colors">
             <div class="flex justify-between items-center">
                 <div class="flex w-[70%] sm:w-full lg:w-[60%] items-center gap-2">
                     {
@@ -56,29 +64,36 @@ const data = await getNowPlaying();
                 </div>
                 <ul class="hidden lg:flex gap-3 w-full items-center justify-end xl:gap-4 text-white">
                     <li>
-                        <Links variant="clear" href="/" className={pathname === '/' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
+                        <Links variant="clear" href="/" ariaCurrent={pathname === '/' ? 'page' : undefined} className={pathname === '/' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
                             Home
                         </Links>             
                     </li>
                     <li>
-                        <Links variant="clear" href="/projects" className={pathname === '/projects' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
+                        <Links variant="clear" href="/projects" ariaCurrent={pathname === '/projects' ? 'page' : undefined} className={pathname === '/projects' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
                             Projects
                         </Links>              
                     </li>
                     <li>
-                        <Links variant="clear" href="/blogs" className={pathname === '/blogs' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
+                        <Links variant="clear" href="/blogs" ariaCurrent={pathname === '/blogs' ? 'page' : undefined} className={pathname === '/blogs' ? 'py-2 px-3 bg-white/15 rounded-3xl' : ''}>
                             Blogs
                         </Links>            
                     </li>
                     <li>
-                        <Links variant="primary" className="text-base shadow-buttonPink line-clamp-1" href="mailto:megantabagas@gmail.com" target="_blank">
+                        <Links variant="primary" className="text-base shadow-buttonPink line-clamp-1" href="mailto:meganatabagas@gmail.com">
                             Reach me out!
                         </Links>
                     </li>
                 </ul>
-                <span id="openMenuButton">
-                    <RxHamburgerMenu className="text-white md:hidden block text-xl" />
-                </span>
+                <button
+                    id="openMenuButton"
+                    type="button"
+                    aria-label="Open navigation"
+                    aria-controls="menu"
+                    aria-expanded="false"
+                    class="rounded-full border border-white/10 p-3 text-white transition-colors hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-pink-200 lg:hidden"
+                >
+                    <RxHamburgerMenu className="block h-5 w-5" aria-hidden="true" />
+                </button>
             </div>
         </nav>
     </div>
@@ -86,34 +101,99 @@ const data = await getNowPlaying();
 
 
 <script>
-    let isScrolled = false;
+    import { gsap } from 'gsap';
+
     const navbar = document.querySelector('.scroll') as HTMLElement;
+    let wasScrolled = false;
 
-    window.addEventListener('scroll', () => {
-        if (navbar) {
-            if (window.scrollY > 25) {
-                navbar.style.backgroundColor = 'rgba(40, 40, 40, 0.8)';
-                isScrolled = true;
-            } else {
-                navbar.style.backgroundColor = 'rgba(40, 40, 40, 0.5)';
-                isScrolled = false;
-            }
-        }
-    });
-</script>
-
-<script>
     const menu = document.getElementById('menu');
-    const openMenuButton = document.getElementById('openMenuButton');
-    const closeMenuButton = document.getElementById('closeMenuButton');
+    const openMenuButton = document.getElementById('openMenuButton') as HTMLButtonElement | null;
+    const closeMenuButton = document.getElementById('closeMenuButton') as HTMLButtonElement | null;
+    const menuLinks = menu?.querySelectorAll<HTMLAnchorElement>('.mobile-menu-link');
+    let menuOpen = false;
+    const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    openMenuButton?.addEventListener('click', function() {
-        menu?.classList.remove('hidden');
-        menu?.classList.add('flex');
+    const updateNavbar = () => {
+        if (!navbar) return;
+
+        const isScrolled = window.scrollY > 25;
+        if (isScrolled === wasScrolled) return;
+        wasScrolled = isScrolled;
+
+        gsap.to(navbar, {
+            backgroundColor: isScrolled ? 'rgba(40, 40, 40, 0.88)' : 'rgba(40, 40, 40, 0.5)',
+            duration: reducedMotion() ? 0 : 0.25,
+            ease: 'power2.out',
+            overwrite: 'auto',
+        });
+    };
+
+    const closeMenu = (returnFocus = true) => {
+        if (!menu || !menuOpen) return;
+        menuOpen = false;
+
+        gsap.to(menu, {
+            autoAlpha: 0,
+            duration: reducedMotion() ? 0 : 0.2,
+            ease: 'power2.in',
+            onComplete: () => {
+                menu.classList.add('hidden');
+                menu.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                openMenuButton?.setAttribute('aria-expanded', 'false');
+                if (returnFocus) openMenuButton?.focus();
+            },
+        });
+    };
+
+    const openMenu = () => {
+        if (!menu || menuOpen) return;
+        menuOpen = true;
+        menu.classList.remove('hidden');
+        menu.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        openMenuButton?.setAttribute('aria-expanded', 'true');
+
+        gsap.fromTo(menu, { autoAlpha: 0 }, { autoAlpha: 1, duration: reducedMotion() ? 0 : 0.24, ease: 'power2.out' });
+        if (menuLinks) {
+            gsap.fromTo(menuLinks, { y: 14, autoAlpha: 0 }, {
+                y: 0,
+                autoAlpha: 1,
+                duration: reducedMotion() ? 0 : 0.3,
+                stagger: reducedMotion() ? 0 : 0.055,
+                delay: reducedMotion() ? 0 : 0.04,
+                ease: 'power2.out',
+            });
+        }
+        requestAnimationFrame(() => closeMenuButton?.focus());
+    };
+
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar();
+
+    openMenuButton?.addEventListener('click', openMenu);
+    closeMenuButton?.addEventListener('click', () => closeMenu());
+    menu?.addEventListener('click', (event) => {
+        if (event.target === menu) closeMenu();
     });
 
-    closeMenuButton?.addEventListener('click', function() {
-        menu?.classList.remove('flex');
-        menu?.classList.add('hidden');
+    menu?.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeMenu();
+            return;
+        }
+
+        if (event.key !== 'Tab') return;
+        const focusable = menu.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+        }
     });
 </script>

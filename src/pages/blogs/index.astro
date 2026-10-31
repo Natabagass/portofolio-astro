@@ -25,32 +25,32 @@ const data = [
 ]
 ---
 
-<Layout title="Blogs">
+<Layout title="Writing" description="Notes and tutorials on frontend development, web technology, and things Bagas Meganata is learning.">
     <AllignmentLayout>
-        <div class="mt-36 w-full">
-            <Text size="h2" Type="h2" weight="font-medium">
+        <div class="mt-36 w-full max-w-3xl">
+            <Text size="h1" Type="h1" weight="font-medium">
                 Blogs
             </Text> 
-            <Text size="p2" weight="font-medium" Type="p" className="mt-4">
-                References, tutorials on web development and other things I want to write about            
+            <Text size="p2 md:p1" weight="font-normal" Type="p" color="text-gray-200" className="mt-4 max-w-2xl leading-relaxed">
+                Notes and tutorials on frontend development, web technology, and the things I’m learning.
             </Text>   
         </div>
         {
             data.map((item) => (
                 <div class="bg-[#1C1C1C30] mt-12 shadow-inner rounded-3xl">
-                <div class="p-8 w-full flex flex-row justify-between">
+                <div class="flex w-full flex-row items-center justify-between p-6 sm:p-8">
                     <Text size="h2" Type="h2" weight="font-medium">
                         {item.year}
                     </Text>
                 </div>
-                    <div class="bg-secondary/50 flex flex-col gap-4 p-8">
+                    <div class="bg-secondary/50 px-6 sm:px-8">
                         {
                             item.data.map((sub) => (
-                                <a href={`/blogs/${sub.url}`} class="flex md:flex-row flex-col w-full justify-between">
-                                    <Text size="p2" color="text-pink-200" Type="h3" weight="font-medium">
+                                <a href={`/blogs/${sub.url}`} class="article-link group flex w-full flex-col gap-2 border-t border-white/10 py-5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-pink-200 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+                                    <Text size="p2" color="text-gray-100" Type="h3" weight="font-medium" className="transition-colors group-hover:text-pink-200">
                                         {sub.title}
                                     </Text>
-                                    <Text size="p2" Type="h4" className="md:mt-0 mt-2" weight="font-medium">
+                                    <Text size="p3" Type="time" className="shrink-0 text-subtitle" weight="font-medium">
                                         {sub.date}
                                     </Text>
                                 </a>

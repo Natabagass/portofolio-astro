@@ -4,52 +4,77 @@ import Text from "@components/react/Typography";
 const data = [
     {
         id: 1,
+        name: 'React',
         img: '/images/react.svg'
     },
     {
         id: 2,
+        name: 'Next.js',
         img: '/images/next-icon.svg'
     },
     {
         id: 3,
+        name: 'Tailwind CSS',
         img: '/images/tailwind.svg'
     },
     {
         id: 4,
+        name: 'TypeScript',
         img: '/images/typescript.svg'
     },
     {
         id: 5,
+        name: 'JavaScript',
         img: '/images/javascript.svg'
     },
     {
         id: 6,
+        name: 'Laravel',
         img: '/images/laravel.svg'
     },
     {
         id: 7,
+        name: 'Solidity',
         img: '/images/solidity.svg'
     },
     {
         id: 8,
+        name: 'Framer',
         img: '/images/frammer.svg'
     },
 ]
 ---
 
-<div class="mt-12 w-full">
+<section class="mt-12 w-full" aria-labelledby="stack-title">
     <Text size="h2" Type="h2" weight="font-medium">
-        Stacks
+        <span id="stack-title">Tools I use</span>
     </Text>
-    <div class="grid mt-6 grid-cols-2 sm:grid-cols-4 w-full gap-8">
+    <ul class="mt-6 grid w-full grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
         {
             data.map((item) => (
-                <div class="shadow-inner flex w-full justify-center items-center p-8 rounded-2xl border border-white/10 bg-secondary/50">
-                    <div class="relative w-full h-full">
-                        <img src={item.img} alt="Icon - Portofolio" class="w-full h-[60px] lg:h-[100px]" />
-                    </div>
-                </div>
+                <li data-stack-card class="stack-card flex min-h-36 flex-col items-center justify-center gap-4 rounded-2xl border border-white/10 bg-secondary/50 p-5 shadow-inner sm:min-h-40">
+                    <img src={item.img} alt={`${item.name} logo`} class="h-12 w-12 object-contain sm:h-14 sm:w-14" loading="lazy" />
+                    <span class="text-sm font-medium text-gray-100">{item.name}</span>
+                </li>
             ))
         }
-    </div>
-</div>
+    </ul>
+</section>
+
+<script>
+    import { gsap } from 'gsap';
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+        document.querySelectorAll<HTMLElement>('[data-stack-card]').forEach((card) => {
+            const lift = () => gsap.to(card, { y: -5, duration: 0.2, ease: 'power2.out', overwrite: 'auto' });
+            const settle = () => gsap.to(card, { y: 0, duration: 0.24, ease: 'power2.out', overwrite: 'auto' });
+
+            card.addEventListener('pointerenter', (event) => {
+                if (event.pointerType !== 'touch') lift();
+            });
+            card.addEventListener('pointerleave', settle);
+        });
+    }
+</script>

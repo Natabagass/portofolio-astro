@@ -11,16 +11,16 @@ const { frontmatter } = Astro.props;
 ---
 
 
-<Layout title="Blogs">
+<Layout title={frontmatter.title} description={`An article by Bagas Meganata: ${frontmatter.title}`}>
     <AllignmentLayout>
-        <div class="mt-36 text-white">
+        <article class="blog-content mt-36 text-white">
             <Text size="h1" weight="font-medium">
                 {frontmatter.title}
             </Text>
-            <div class="mt-6 w-full flex gap-4">
+            <div class="mt-6 flex w-full flex-wrap gap-3">
                 {
                     frontmatter.tag.map((item: { name: string, id: number }) => (
-                        <div class="bg-secondary/50 shadow-inner rounded-full px-6 py-2">
+                        <div class="rounded-full border border-white/10 bg-secondary/50 px-4 py-2 shadow-inner">
                             <Text size="p3" weight="font-normal" className="font-inter" >
                                 {item.name}
                             </Text>
@@ -28,9 +28,9 @@ const { frontmatter } = Astro.props;
                     ))
                 }
             </div>
-            <div class="mt-6 font-inter">
+            <div class="blog-content__body mt-8 font-inter">
                 <slot />
             </div>
-        </div>
+        </article>
     </AllignmentLayout>
 </Layout>
