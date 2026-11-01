@@ -46,11 +46,11 @@ const data = await getNowPlaying();
             <div class="flex justify-between items-center">
                 <div class="flex w-[70%] sm:w-full lg:w-[60%] items-center gap-2">
                     {
-                        data?.item !== undefined ?
+                        data?.item ?
                         <>
                             <BiEqualizer className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
                             <Text weight="font-medium" className="line-clamp-1" Type="h3" size="p3" color="text-gray-100">
-                                <span class="font-bold">Listening to</span> {data?.item.name} - {data?.item.album.artists[0].name}
+                                <span class="font-bold">Listening to</span> {data.item.name} - {data.item.album.artists[0].name}
                             </Text> 
                         </>
                         :
