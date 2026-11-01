@@ -1,5 +1,4 @@
 import { useRef, useState, type KeyboardEvent } from "react";
-import { gsap } from "gsap";
 import Links from "./Links";
 import Text from "./Typography";
 
@@ -15,7 +14,10 @@ const CardPortofolio = (item: Props) => {
     const innerRef = useRef<HTMLDivElement>(null);
     const [isFlipped, setIsFlipped] = useState(false);
 
-    const animateFlip = (showDetails: boolean) => {
+    const animateFlip = async (showDetails: boolean) => {
+        if (!innerRef.current) return;
+
+        const { gsap } = await import("gsap");
         if (!innerRef.current) return;
 
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
