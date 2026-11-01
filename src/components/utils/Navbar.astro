@@ -2,12 +2,9 @@
 import Text from "../react/Typography";
 import Links from "../react/Links"
 const { pathname } = Astro.url
-import { getNowPlaying } from '../../../api/spotify'; // Pastikan path ini sesuai dengan lokasi file
 import { BiEqualizer, BiSolidSad } from "react-icons/bi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RiCloseLargeLine } from "react-icons/ri";
-
-const data = await getNowPlaying();
 
 ---
 
@@ -45,22 +42,16 @@ const data = await getNowPlaying();
         <nav class="scroll mx-auto max-w-screen-2xl rounded-full border border-white/10 bg-secondary/50 px-5 py-4 shadow-inner transition-colors">
             <div class="flex justify-between items-center">
                 <div class="flex w-[70%] sm:w-full lg:w-[60%] items-center gap-2">
-                    {
-                        data?.item ?
-                        <>
-                            <BiEqualizer className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
-                            <Text weight="font-medium" className="line-clamp-1" Type="h3" size="p3" color="text-gray-100">
-                                <span class="font-bold">Listening to</span> {data.item.name} - {data.item.album.artists[0].name}
-                            </Text> 
-                        </>
-                        :
-                        <>
-                            <BiSolidSad className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
-                            <Text weight="font-medium" Type="h3" size="p3" color="text-gray-100">
-                                {`Not heard any song :(`}
-                            </Text> 
-                        </>
-                    }
+                    <span id="now-playing-track-icon" class="hidden">
+                        <BiEqualizer className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
+                    </span>
+                    <span id="now-playing-empty-icon">
+                        <BiSolidSad className="text-pink-200 animate-pulse text-2xl lg:text-3xl" />
+                    </span>
+                    <Text weight="font-medium" className="line-clamp-1" Type="h3" size="p3" color="text-gray-100">
+                        <span id="now-playing-prefix" class="font-bold"></span>
+                        <span id="now-playing-label">Not heard any song :(</span>
+                    </Text>
                 </div>
                 <ul class="hidden lg:flex gap-3 w-full items-center justify-end xl:gap-4 text-white">
                     <li>
@@ -170,6 +161,33 @@ const data = await getNowPlaying();
 
     window.addEventListener('scroll', updateNavbar, { passive: true });
     updateNavbar();
+
+    const loadNowPlaying = async () => {
+        const prefix = document.getElementById('now-playing-prefix');
+        const label = document.getElementById('now-playing-label');
+        const trackIcon = document.getElementById('now-playing-track-icon');
+        const emptyIcon = document.getElementById('now-playing-empty-icon');
+        if (!prefix || !label || !trackIcon || !emptyIcon) return;
+
+        try {
+            const response = await fetch('/api/now-playing', { cache: 'no-store' });
+            if (!response.ok) return;
+
+            const result = await response.json();
+            const track = result?.item;
+            const artist = track?.album?.artists?.[0]?.name;
+            if (typeof track?.name !== 'string' || typeof artist !== 'string') return;
+
+            prefix.textContent = 'Listening to';
+            label.textContent = ` ${track.name} - ${artist}`;
+            trackIcon.classList.remove('hidden');
+            emptyIcon.classList.add('hidden');
+        } catch {
+            // Keep the fallback label when Spotify or the internal endpoint is unavailable.
+        }
+    };
+
+    void loadNowPlaying();
 
     openMenuButton?.addEventListener('click', openMenu);
     closeMenuButton?.addEventListener('click', () => closeMenu());
