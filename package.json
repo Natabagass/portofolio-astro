@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "spotify:auth": "node scripts/spotify-auth.mjs",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -18,6 +19,7 @@
     "@fontsource/urbanist": "^5.0.20",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@upstash/redis": "^1.40.0",
     "astro": "^6.0.0",
     "axios": "^1.7.3",
     "dotenv": "^16.4.5",
